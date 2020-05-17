@@ -44,7 +44,7 @@ export class TroncalService {
     let params = new HttpParams();
     let url = '';
     if (entity.id_troncal) {
-      url = `${this.api}/${entity.id_troncal.toString()}`;
+      url = this.api + '/' + entity.id_troncal;
       // params = new HttpParams().set('ID', entity.id_troncal.toString());
       return this.http.put<Troncal>(url, entity, {headers, params});
     } else {
@@ -57,7 +57,7 @@ export class TroncalService {
     let params = new HttpParams();
     let url = '';
     if (entity.id_troncal) {
-      url = `${this.api}/${entity.id_troncal.toString()}`;
+      url = this.api + '/' + entity.id_troncal;
       params = new HttpParams().set('ID', entity.id_troncal.toString());
       return this.http.delete<Troncal>(url, {headers, params});
     }
