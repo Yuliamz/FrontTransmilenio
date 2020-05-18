@@ -39,11 +39,11 @@
           <td>{{item.id_troncal}}</td>
           <td>{{item.nombre_troncal}}</td>
           <td>{{item.letra_troncal}}</td>
-          <td>{{item.color_troncal}}</td>
+          <td>{{item.color_troncal}}<label [style.background]="item.color_troncal" [style.color]="item.color_troncal" style="max-width: 350px; margin-left: 5px;">{{'Color'}}</label></td>
           <td>{{item.activo_troncal=='a'?'Activo':'Inactivo'}}</td>
           <td style="white-space: nowrap">
             <a [routerLink]="['../troncals', item.id_troncal ]" class="btn btn-secondary">Editar</a>&nbsp;
-            <button (click)="delete(item)" class="btn btn-danger">Inhabilitar</button>
+            <button (click)="delete(item)" class="btn btn-danger" [disabled]="item.activo_troncal=='n'">Inhabilitar</button>
           </td>
         </tr>
       </tbody>

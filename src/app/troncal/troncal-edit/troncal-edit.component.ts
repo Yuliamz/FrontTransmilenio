@@ -15,7 +15,7 @@ export class TroncalEditComponent implements OnInit {
   id: string;
   troncal: Troncal;
   feedback: any = {};
-
+  estados: any[] = [{id: "a", nombre: "Activo"}, {id: "n", nombre: "Inactivo"}];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,6 +35,10 @@ export class TroncalEditComponent implements OnInit {
       )
       .subscribe(troncal => {
           this.troncal = troncal;
+          if (this.troncal.activo_troncal === undefined) {
+            this.troncal.activo_troncal = 'a';
+            this.troncal.color_troncal = '#000000';
+          }
           this.feedback = {};
         },
         err => {

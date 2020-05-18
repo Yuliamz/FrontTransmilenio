@@ -12,27 +12,31 @@
 
       <div class="form-group">
         <label>Id</label>
-        {{troncal.id || 'n/a'}}
+        {{troncal.id_troncal || 'n/a'}}
       </div>
 
       <div class="form-group">
         <label for="nombre_troncal">Nombre</label>
-        <input [(ngModel)]="troncal.nombre_troncal" id="nombre_troncal" name="nombre_troncal" class="form-control">
+        <input placeholder="Nombre de la troncal" [(ngModel)]="troncal.nombre_troncal" id="nombre_troncal" name="nombre_troncal" class="form-control">
       </div>
 
       <div class="form-group">
         <label for="letra_troncal">Letra</label>
-        <input [(ngModel)]="troncal.letra_troncal" id="letra_troncal" name="letra_troncal" class="form-control">
+        <input placeholder="Letra que la troncal" [(ngModel)]="troncal.letra_troncal" id="letra_troncal" name="letra_troncal" class="form-control">
       </div>
 
       <div class="form-group">
-        <label for="color_troncal">Color</label>
-        <input [(ngModel)]="troncal.color_troncal" id="color_troncal" name="color_troncal" class="form-control">
+        <label for="color_troncal">{{'Color    '+troncal.color_troncal+'    '}}</label>
+        <label [style.background]="troncal.color_troncal" [style.color]="troncal.color_troncal" style="max-width: 350px; min-width: 50px; margin-left: 5px;">{{'  Color elegido   '}}</label>
+        <button type="button" [(colorPicker)]="troncal.color_troncal" style="max-width: 150px;" class="btn btn-primary">  Elegir un color</button>
+
       </div>
 
       <div class="form-group">
         <label for="activo_troncal">Estado</label>
-        <input [(ngModel)]="troncal.activo_troncal" id="activo_troncal" name="activo_troncal" class="form-control">
+        <select name="activo_troncal" [(ngModel)]="troncal.activo_troncal" class="form-control">
+          <option [value]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+        </select>
       </div>
 
       <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>

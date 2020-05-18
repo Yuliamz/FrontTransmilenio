@@ -58,7 +58,7 @@ export class TroncalService {
     let url = '';
     if (entity.id_troncal) {
       url = this.api + '/' + entity.id_troncal;
-      params = new HttpParams().set('ID', entity.id_troncal.toString());
+      // params = new HttpParams().set('ID', entity.id_troncal.toString());
       return this.http.delete<Troncal>(url, {headers, params});
     }
     return null;

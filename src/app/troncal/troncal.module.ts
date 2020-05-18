@@ -6,11 +6,13 @@ import { TroncalListComponent } from './troncal-list/troncal-list.component';
 import { TroncalEditComponent } from './troncal-edit/troncal-edit.component';
 import { TroncalService } from './troncal.service';
 import { TRONCAL_ROUTES } from './troncal.routes';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ColorPickerModule,
     RouterModule.forChild(TRONCAL_ROUTES)
   ],
   declarations: [
