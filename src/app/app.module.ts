@@ -10,6 +10,7 @@ import { APP_EXTRA_OPTIONS, APP_ROUTES } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TroncalModule } from './troncal/troncal.module';
+import { EstacionModule } from './estacion/estacion.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { TroncalModule } from './troncal/troncal.module';
     BrowserAnimationsModule,
     RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS}),
     TroncalModule,
+    EstacionModule,
   ],
   declarations: [
     AppComponent,

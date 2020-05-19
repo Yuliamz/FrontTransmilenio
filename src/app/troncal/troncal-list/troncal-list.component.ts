@@ -35,13 +35,13 @@ export class TroncalListComponent implements OnInit {
   delete(troncal: Troncal): void {
     if (confirm('Está seguro de inhabilitar la Troncal ' + troncal.letra_troncal)) {
       this.troncalService.delete(troncal).subscribe(() => {
-          this.feedback = {type: 'success', message: 'Delete was successful!'};
+          this.feedback = {type: 'success', message: 'La troncal ha sido deshabilitada'};
           setTimeout(() => {
             this.search();
           }, 1000);
         },
         err => {
-          this.feedback = {type: 'warning', message: 'Error deleting.'};
+          this.feedback = {type: 'warning', message: 'Error al deshabilitar'};
         }
       );
     }

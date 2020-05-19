@@ -1,0 +1,39 @@
+{ 
+    "title": "Troncal",
+    "entity": "troncal",
+    "api": {
+      "url": "http://localhost:8000/trunk"
+    },
+    "filter": [
+      "nombre_troncal"
+    ],
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "isId": true,
+        "readonly": true,
+        "type": "number"
+      },
+      {
+        "name": "nombre_troncal",
+        "type": "string",
+        "label": "Nombre"
+      },
+      {
+        "name": "letra_troncal",
+        "type": "string",
+        "label": "Letra"
+      },
+	  {
+        "name": "color_troncal",
+        "type": "string",
+        "label": "Color"
+      },
+      {
+        "name": "activo_troncal",
+        "type": "string",
+        "label": "Estado"
+      } 
+    ]
+}

@@ -1,5 +1,5 @@
 <ol class="breadcrumb float-right">
-  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
   <li class="breadcrumb-item active">Troncal</li>
 </ol>
 <div class="card">
@@ -27,7 +27,7 @@
 
       <div class="form-group">
         <label for="color_troncal">{{'Color    '+troncal.color_troncal+'    '}}</label>
-        <label [style.background]="troncal.color_troncal" [style.color]="troncal.color_troncal" style="max-width: 350px; min-width: 50px; margin-left: 5px;">{{'  Color elegido   '}}</label>
+        <label [style.background]="troncal.color_troncal" [style.color]="troncal.color_troncal" style="max-width: 350px; min-width: 50px; margin-left: 5px; ma">{{'  Color elegido   '}}</label>
         <button type="button" [(colorPicker)]="troncal.color_troncal" style="max-width: 150px;" class="btn btn-primary">  Elegir un color</button>
 
       </div>
