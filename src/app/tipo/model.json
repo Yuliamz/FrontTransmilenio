@@ -1,0 +1,39 @@
+{ 
+    "title": "Tipo",
+    "entity": "tipo",
+    "api": {
+      "url": "http://localhost:8000/trunk"
+    },
+    "filter": [
+      "nombre_tipo"
+    ],
+    "fields": [
+      {
+        "name": "id",
+        "label": "Id",
+        "isId": true,
+        "readonly": true,
+        "type": "number"
+      },
+      {
+        "name": "nombre_tipo",
+        "type": "string",
+        "label": "Nombre"
+      },
+      {
+        "name": "letra_tipo",
+        "type": "string",
+        "label": "Letra"
+      },
+	  {
+        "name": "color_tipo",
+        "type": "string",
+        "label": "Color"
+      },
+      {
+        "name": "activo_tipo",
+        "type": "string",
+        "label": "Estado"
+      } 
+    ]
+}

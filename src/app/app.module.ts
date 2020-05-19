@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TroncalModule } from './troncal/troncal.module';
 import { EstacionModule } from './estacion/estacion.module';
+import { TipoModule } from './tipo/tipo.module';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { EstacionModule } from './estacion/estacion.module';
     RouterModule.forRoot([...APP_ROUTES], {...APP_EXTRA_OPTIONS}),
     TroncalModule,
     EstacionModule,
+    TipoModule,
   ],
   declarations: [
     AppComponent,

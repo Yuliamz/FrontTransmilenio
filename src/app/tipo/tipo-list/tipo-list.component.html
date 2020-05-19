@@ -1,0 +1,50 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Tipo</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Tipos de bus</h2>
+  </div>
+  <div class="content">
+    <form #f="ngForm">
+
+      <div class="form-group">
+        <label for="nombre_tipo">Nombre:</label>
+        <input [(ngModel)]="filter.nombre_tipo" id="nombre_tipo" name="nombre_tipo" class="form-control">
+      </div>
+
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Buscar</button>
+      <a [routerLink]="['../tipos', 'new' ]" class="btn btn-default">Nuevo</a>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="tipoList.length > 0">
+  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive">
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr>
+          <th class="border-top-0" scope="col">Id</th>
+          <th class="border-top-0" scope="col">Nombre</th>
+          <th class="border-top-0" scope="col">Color</th>
+          <th class="border-top-0" scope="col">Estado</th>
+          <th class="border-top-0" scope="col" style="width:120px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tipoList" [class.active]="item === selectedTipo">
+
+          <td>{{item.id_tipo_bus}}</td>
+          <td>{{item.nombre_tipo}}</td>
+          <td>{{item.color}}<label [style.background]="item.color" [style.color]="item.color" style="max-width: 350px; margin-left: 5px;">{{'Color'}}</label></td>
+          <td>{{item.activo_tipo_bus=='a'?'Activo':'Inactivo'}}</td>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../tipos', item.id_tipo_bus ]" class="btn btn-secondary">Editar</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger" [disabled]="item.activo_tipo_bus=='n'">Inhabilitar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

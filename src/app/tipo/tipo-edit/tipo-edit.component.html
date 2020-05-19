@@ -1,0 +1,41 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Tipo</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Detalles del tipo de bus</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="tipo" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Id</label>
+        {{tipo.id_tipo_bus || 'n/a'}}
+      </div>
+
+      <div class="form-group">
+        <label for="nombre_tipo">Nombre</label>
+        <input placeholder="Nombre de la tipo" [(ngModel)]="tipo.nombre_tipo" id="nombre_tipo" name="nombre_tipo" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="color_tipo">{{'Color    '+tipo.color+'    '}}</label>
+        <label [style.background]="tipo.color" [style.color]="tipo.color" style="max-width: 350px; min-width: 50px; margin-left: 5px; margin-right: 5px;">{{'  Color elegido   '}}</label>
+        <button type="button" [(colorPicker)]="tipo.color" style="max-width: 150 px;" class="btn btn-primary">  Elegir un color</button>
+
+      </div>
+
+      <div class="form-group">
+        <label for="activo_tipo">Estado</label>
+        <select name="activo_tipo" [(ngModel)]="tipo.activo_tipo_bus" class="form-control">
+          <option [value]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>
