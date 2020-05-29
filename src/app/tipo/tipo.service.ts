@@ -4,14 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-const headers = new HttpHeaders().set('Accept', 'application/json')
-.set('Access-Control-Allow-Origin', '*')
-.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+const headers = new HttpHeaders().set('Accept', 'application/json');
 @Injectable()
 export class TipoService {
 
   tipoList: Tipo[] = [];
-  api = 'http://localhost:8000/busType';
+  api = 'http://localhost:8000/api/busType';
 
   constructor(private http: HttpClient) {
   }

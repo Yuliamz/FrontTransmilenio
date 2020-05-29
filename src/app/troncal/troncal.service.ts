@@ -4,14 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-const headers = new HttpHeaders().set('Accept', 'application/json')
-.set('Access-Control-Allow-Origin', '*')
-.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+const headers = new HttpHeaders().set('Accept', 'application/json');
 @Injectable()
 export class TroncalService {
 
   troncalList: Troncal[] = [];
-  api = 'http://localhost:8000/trunk';
+  api = 'http://localhost:8000/api/trunk';
 
   constructor(private http: HttpClient) {
   }
@@ -38,6 +36,12 @@ export class TroncalService {
     };
 
     return this.http.get<Troncal[]>(this.api, {params, headers});
+  }
+
+  cargar(): Observable<Troncal[]> {
+    return this.http.get<Troncal[]>(this.api, {
+      headers: {'Accept':'application/json','active':'a'}
+   });
   }
 
   save(entity: Troncal): Observable<Troncal> {

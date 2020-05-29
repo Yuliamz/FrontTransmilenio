@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-const headers = new HttpHeaders().set('Accept', 'application/json')
-.set('Access-Control-Allow-Origin', '*')
-.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+const headers = new HttpHeaders().set('Accept', 'application/json');
+const headersActivo = new HttpHeaders().set('Accept', 'application/json')
+.set('active', 'a');
 @Injectable()
 export class EstacionService {
 
   estacionList: Estacion[] = [];
-  api = 'http://localhost:8000/station';
+  api = 'http://localhost:8000/api/station';
 
   constructor(private http: HttpClient) {
   }
@@ -38,6 +38,14 @@ export class EstacionService {
     };
 
     return this.http.get<Estacion[]>(this.api, {params, headers});
+  }
+
+  cargar(): Observable<Estacion[]> {
+    const params = {};
+    let head = new HttpHeaders();
+    return this.http.get<Estacion[]>(this.api, {
+      headers: {'Accept':'application/json','active':'a'}
+   });
   }
 
   save(entity: Estacion): Observable<Estacion> {

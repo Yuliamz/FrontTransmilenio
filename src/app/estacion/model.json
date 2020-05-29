@@ -1,8 +1,8 @@
-{ 
+{
     "title": "Troncal",
     "entity": "troncal",
     "api": {
-      "url": "http://localhost:8000/trunk"
+      "url": "http://localhost:8000/api/trunk"
     },
     "filter": [
       "nombre_troncal"
@@ -34,6 +34,6 @@
         "name": "activo_troncal",
         "type": "string",
         "label": "Estado"
-      } 
+      }
     ]
 }
