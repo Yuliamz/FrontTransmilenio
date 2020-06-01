@@ -33,7 +33,7 @@ export class TroncalEstacionListComponent implements OnInit {
   }
 
   delete(troncalEstacion: TroncalEstacion): void {
-    if (confirm('Está seguro de inhabilitar la TroncalEstacion ' + troncalEstacion.id_troncal)) {
+    if (confirm('Está seguro de inhabilitar la TroncalEstacion ' + troncalEstacion.id_troncal_estacion)) {
       this.troncalEstacionService.delete(troncalEstacion).subscribe(() => {
           this.feedback = {type: 'success', message: 'La TroncalEstacion ha sido deshabilitada'};
           setTimeout(() => {

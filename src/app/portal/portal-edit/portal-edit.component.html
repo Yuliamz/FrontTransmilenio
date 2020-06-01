@@ -1,0 +1,45 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Portal</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Detalles del Portal</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="portal" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Id</label>
+        {{portal.id_portal || 'n/a'}}
+      </div>
+
+      <div class="form-group">
+        <label for="troncal_portal">Troncal</label>
+        <select name="troncal_portal" [(ngModel)]="selectedTroncal" class="form-control">
+          <option
+          [ngValue]="item"
+          *ngFor="let item of troncales">
+          {{item.letra_troncal +' - '+item.nombre_troncal}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="nombre_portal">Nombre</label>
+        <input placeholder="Nombre del portal" [(ngModel)]="portal.nombre_portal" id="nombre_portal" name="nombre_portal" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="activo_portal">Estado</label>
+        <select name="activo_portal" [(ngModel)]="portal.activo_portal" class="form-control">
+          <option [ngValue]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>
