@@ -16,23 +16,27 @@
       </div>
 
       <div class="form-group">
-        <label for="activo_troncal_estacion">Troncal</label>
-        <select name="activo_troncal_estacion" [(ngModel)]="troncalEstacion.id_troncal" class="form-control">
-          <option [value]="item.id_troncal" *ngFor="let item of troncales">{{item.letra_troncal +' - '+item.nombre_troncal}}</option>
+        <label for="troncal_troncal_estacion">Troncal</label>
+        <select name="troncal_troncal_estacion" [(ngModel)]="selectedTroncal" class="form-control">
+          <option
+          [ngValue]="item"
+          *ngFor="let item of troncales">
+          {{item.letra_troncal +' - '+item.nombre_troncal}}
+        </option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="activo_troncal_estacion">Estacion</label>
-        <select name="activo_troncal_estacion" [(ngModel)]="troncalEstacion.id_estacion" class="form-control">
-          <option [value]="item.id_estacion" *ngFor="let item of estaciones">{{item.nombre_estacion}}</option>
+        <label for="estacion_troncal_estacion">Estacion</label>
+        <select name="estacion_troncal_estacion" [(ngModel)]="selectedEstacion" class="form-control">
+          <option [ngValue]="item" *ngFor="let item of estaciones">{{item.nombre_estacion}}</option>
         </select>
       </div>
 
       <div class="form-group">
         <label for="activo_troncal_estacion">Estado</label>
         <select name="activo_troncal_estacion" [(ngModel)]="troncalEstacion.activo_troncal_estacion" class="form-control">
-          <option [value]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+          <option [ngValue]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
         </select>
       </div>
 

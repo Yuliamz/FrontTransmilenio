@@ -22,6 +22,8 @@ export class TroncalEstacionEditComponent implements OnInit {
   estados: any[] = [{id: "a", nombre: "Activo"}, {id: "n", nombre: "Inactivo"}];
   troncales: Troncal[];
   estaciones: Estacion[];
+  selectedTroncal: Troncal;
+  selectedEstacion: Estacion;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -49,22 +51,36 @@ export class TroncalEstacionEditComponent implements OnInit {
           this.feedback = {};
         },
         err => {
-          this.feedback = {type: 'warning', message: 'Error al cargar la información'};
+          this.feedback = {type: 'danger', message: 'Error al cargar la información'};
         }
       );
+        // Cargar Troncal
       this.troncalService.cargar().subscribe(data => {
-        this.troncales = data;
+        if (data.length === 0) {
+          this.feedback = {type: 'warning', message: 'No existen Troncales'};
+        } else {
+          this.troncales = data;
+          this.setTroncal();
+        }
       }, error => {
-        this.feedback = {type: 'warning', message: 'No existen Troncales'};
+        this.feedback = {type: 'danger', message: 'No existen Troncales'};
       });
+      // Cargar Estacion
       this.estacionService.cargar().subscribe(data => {
-        this.estaciones = data;
+        if (data.length === 0) {
+          this.feedback = {type: 'warning', message: 'No existen Estaciones'};
+        } else {
+          this.estaciones = data;
+          this.setEstacion();
+        }
       }, error => {
-        this.feedback = {type: 'warning', message: 'No existen Estaciones'};
+        this.feedback = {type: 'danger', message: 'No existen Estaciones'};
       });
   }
 
   save() {
+    this.troncalEstacion.id_estacion=this.selectedEstacion.id_estacion;
+    this.troncalEstacion.id_troncal=this.selectedTroncal.id_troncal;
     this.troncalEstacionService.save(this.troncalEstacion).subscribe(
       troncalEstacion => {
         this.troncalEstacion = troncalEstacion;
@@ -73,8 +89,12 @@ export class TroncalEstacionEditComponent implements OnInit {
           this.router.navigate(['/troncalEstacions']);
         }, 1000);
       },
-      err => {
-        this.feedback = {type: 'warning', message: 'Error al guardar'};
+      error => {
+        if (error.error.error) {
+          this.feedback = {type: 'danger', message: error.error.error};
+        } else {
+          this.feedback = {type: 'danger', message: 'Error al guardar'};
+        }
       }
     );
   }
@@ -82,4 +102,21 @@ export class TroncalEstacionEditComponent implements OnInit {
   cancel() {
     this.router.navigate(['/troncalEstacions']);
   }
+
+  setEstacion() {
+    this.estaciones.forEach(estacion => {
+      if (estacion.id_estacion == this.troncalEstacion.id_estacion) {
+        this.selectedEstacion = estacion;
+      }
+    });
+  }
+  setTroncal() {
+    this.troncales.forEach(troncal => {
+      if (troncal.id_troncal == this.troncalEstacion.id_troncal) {
+        this.selectedTroncal = troncal;
+      }
+    });
+  }
+
+
 }
