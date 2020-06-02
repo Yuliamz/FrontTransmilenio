@@ -90,8 +90,9 @@ export class TroncalEstacionEditComponent implements OnInit {
         }, 1000);
       },
       error => {
-        if (error.error.error) {
-          this.feedback = {type: 'danger', message: error.error.error};
+        console.log(JSON.stringify(error));
+        if (error.error.errors) {
+          this.feedback = {type: 'danger', message: error.error.errors};
         } else {
           this.feedback = {type: 'danger', message: 'Error al guardar'};
         }
