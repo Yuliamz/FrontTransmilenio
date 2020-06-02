@@ -15,7 +15,8 @@ import { TroncalEstacionModule } from './troncalEstacion/troncalEstacion.module'
 import { TipoModule } from './tipo/tipo.module';
 import { PortalModule } from './portal/portal.module';
 import { PlataformaModule } from './plataforma/plataforma.module';
-import { VagonModule } from "./vagon/vagon.module";
+import { VagonModule } from './vagon/vagon.module';
+import { RutaModule } from './ruta/ruta.module';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { VagonModule } from "./vagon/vagon.module";
     PortalModule,
     PlataformaModule,
     VagonModule,
+    RutaModule,
   ],
   declarations: [
     AppComponent,

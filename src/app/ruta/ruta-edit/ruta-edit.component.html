@@ -1,0 +1,34 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Ruta</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Detalles de la ruta</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="ruta" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Id</label>
+        {{ruta.id_ruta || 'n/a'}}
+      </div>
+
+      <div class="form-group">
+        <label for="codigo_ruta">Codigo</label>
+        <input placeholder="Codigo de la ruta" [(ngModel)]="ruta.codigo_ruta" id="codigo_ruta" name="codigo_ruta" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="activo_ruta">Estado</label>
+        <select name="activo_ruta" [(ngModel)]="ruta.activo_ruta" class="form-control">
+          <option [value]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>
