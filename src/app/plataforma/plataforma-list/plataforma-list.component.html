@@ -1,0 +1,50 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Plataforma</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Plataformas</h2>
+  </div>
+  <div class="content">
+    <form #f="ngForm">
+
+      <div class="form-group">
+        <label for="id_portal">Portal:</label>
+        <input [(ngModel)]="filter.id_portal" id="id_portal" name="id_portal" class="form-control">
+      </div>
+
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Buscar</button>
+      <a [routerLink]="['../plataformas', 'new' ]" class="btn btn-default">Nuevo</a>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="plataformaList.length > 0">
+  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive">
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr>
+          <th class="border-top-0" scope="col">Id</th>
+          <th class="border-top-0" scope="col">Portal</th>
+          <th class="border-top-0" scope="col">Número</th>
+          <th class="border-top-0" scope="col">Estado</th>
+          <th class="border-top-0" scope="col" style="width:120px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of plataformaList" [class.active]="item === selectedPortal">
+
+          <td>{{item.id_plataforma}}</td>
+          <td>{{item.id_portal}}</td>
+          <td>{{item.numero_plataforma}}</td>
+          <td>{{item.activo_plataforma=='a'?'Activo':'Inactivo'}}</td>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../plataformas', item.id_plataforma ]" class="btn btn-secondary">Editar</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger" [disabled]="item.activo_plataforma=='n'">Inhabilitar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

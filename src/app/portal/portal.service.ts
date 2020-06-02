@@ -33,6 +33,12 @@ export class PortalService {
     );
   }
 
+  cargar(): Observable<Portal[]> {
+    return this.http.get<Portal[]>(this.api, {
+      headers: {'Accept':'application/json','active':'a'}
+   });
+  }
+
   find(filter: PortalFilter): Observable<Portal[]> {
     const params = {
       'id_troncal': filter.id_troncal,

@@ -1,0 +1,45 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Plataforma</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Detalles del Plataforma</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="plataforma" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Id</label>
+        {{plataforma.id_plataforma || 'n/a'}}
+      </div>
+
+      <div class="form-group">
+        <label for="portal_plataforma">Portal</label>
+        <select name="portal_plataforma" [(ngModel)]="selectedPortal" class="form-control">
+          <option
+          [ngValue]="item"
+          *ngFor="let item of portales">
+          {{item.nombre_portal}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numero_plataforma">Número</label>
+        <input placeholder="Nombre del plataforma" [(ngModel)]="plataforma.numero_plataforma" id="numero_plataforma" name="numero_plataforma" class="form-control" type="number">
+      </div>
+
+      <div class="form-group">
+        <label for="activo_plataforma">Estado</label>
+        <select name="activo_plataforma" [(ngModel)]="plataforma.activo_plataforma" class="form-control">
+          <option [ngValue]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>
