@@ -1,0 +1,52 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Estación</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Detalles del Vagón</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="vagon" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Id</label>
+        {{vagon.id_vagon || 'n/a'}}
+      </div>
+
+      <div class="form-group">
+        <label for="plataforma_vagon">Plataforma</label>
+        <select name="plataforma_vagon" [(ngModel)]="selectedPlataforma" class="form-control">
+          <option
+          [ngValue]="item"
+          *ngFor="let item of plataformaes">
+          {{item.id_portal +' - '+item.numero_plataforma}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="troncalEstacion_vagon">Estacion</label>
+        <select name="troncalEstacion_vagon" [(ngModel)]="selectedEstacion" class="form-control">
+          <option [ngValue]="item" *ngFor="let item of troncalEstaciones">{{item.id_troncal + '-' + item.id_estacion}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="numero_vagon">Número</label>
+        <input placeholder="Número del Vagón" [(ngModel)]="vagon.numero_vagon" id="numero_vagon" name="numero_vagon" class="form-control" type="number">
+      </div>
+
+      <div class="form-group">
+        <label for="activo_vagon">Estado</label>
+        <select name="activo_vagon" [(ngModel)]="vagon.activo_vagon" class="form-control">
+          <option [ngValue]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>

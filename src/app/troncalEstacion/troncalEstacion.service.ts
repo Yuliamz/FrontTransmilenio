@@ -41,6 +41,12 @@ export class TroncalEstacionService {
     return this.http.get<TroncalEstacion[]>(this.api, {params, headers});
   }
 
+  cargar(): Observable<TroncalEstacion[]> {
+    return this.http.get<TroncalEstacion[]>(this.api, {
+      headers: {'Accept': 'application/json', 'active': 'a'}
+   });
+  }
+
   save(entity: TroncalEstacion): Observable<TroncalEstacion> {
     let params = new HttpParams();
     let url = '';

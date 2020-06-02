@@ -41,6 +41,12 @@ export class PlataformaService {
     return this.http.get<Plataforma[]>(this.api, {params, headers});
   }
 
+  cargar(): Observable<Plataforma[]> {
+    return this.http.get<Plataforma[]>(this.api, {
+      headers: {'Accept':'application/json','active':'a'}
+   });
+  }
+
   save(entity: Plataforma): Observable<Plataforma> {
     let params = new HttpParams();
     let url = '';
