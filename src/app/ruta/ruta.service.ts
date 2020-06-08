@@ -42,14 +42,13 @@ export class RutaService {
 
   cargar(): Observable<Ruta[]> {
     const params = {};
-    let head = new HttpHeaders();
     return this.http.get<Ruta[]>(this.api, {
-      headers: {'Accept':'application/json','active':'a'}
+      headers: {'Accept': 'application/json', 'active': 'a'}
    });
   }
 
   save(entity: Ruta): Observable<Ruta> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
     if (entity.id_ruta) {
       url = this.api + '/' + entity.id_ruta;
@@ -62,7 +61,7 @@ export class RutaService {
   }
 
   delete(entity: Ruta): Observable<Ruta> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
     if (entity.id_ruta) {
       url = this.api + '/' + entity.id_ruta;

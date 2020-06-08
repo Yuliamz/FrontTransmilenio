@@ -4,4 +4,5 @@ export class Vagon {
   id_troncal_estacion: number;
   numero_vagon: number;
   activo_vagon: string;
+  draggable: boolean;
 }

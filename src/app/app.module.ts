@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ColorPickerModule } from 'ngx-color-picker';
 
+
+
 import { AppComponent } from './app.component';
 import { APP_EXTRA_OPTIONS, APP_ROUTES } from './app.routes';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +19,8 @@ import { PortalModule } from './portal/portal.module';
 import { PlataformaModule } from './plataforma/plataforma.module';
 import { VagonModule } from './vagon/vagon.module';
 import { RutaModule } from './ruta/ruta.module';
+import { ParadaModule } from './parada/parada.module';
+
 
 @NgModule({
   imports: [
@@ -33,6 +37,8 @@ import { RutaModule } from './ruta/ruta.module';
     PlataformaModule,
     VagonModule,
     RutaModule,
+    ParadaModule,
+    PortalModule,
   ],
   declarations: [
     AppComponent,

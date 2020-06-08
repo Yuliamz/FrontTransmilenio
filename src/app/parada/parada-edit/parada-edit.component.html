@@ -1,0 +1,71 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Ruta</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Definir la ruta</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="parada" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label for="ruta_parada">Ruta</label>
+        <select name="ruta_parada" [(ngModel)]="selectedRuta" class="form-control" id="ruta_parada"
+                [disabled]="parada.id_ruta" (ngModelChange)="cargarSelectedVagones(selectedRuta.id_ruta)">
+          <option
+          [ngValue]="item"
+          *ngFor="let item of rutas">
+          {{item.id_ruta +' - '+item.codigo_ruta}}
+        </option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" >Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+
+      <div cdkDropListGroup >
+        <div class="example-container">
+          <h2 class="title">Vagones</h2>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="vagones"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of vagones" cdkDrag>{{item.id_vagon}}</div>
+          </div>
+        </div>
+
+        <div class="example-container">
+          <h2 class="title">Paradas</h2>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="selectedVagones"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box"
+                 *ngFor="let item of selectedVagones"
+                 [ngStyle]="{'background-color': (item.activo_vagon=='n') ? 'rgb(143, 143, 143)' : 'white'}"
+                 cdkDrag
+            >
+              {{item.id_vagon}}
+
+              <button (click)="habilitar(item)" *ngIf="item.activo_vagon=='n'">
+                <div class="icon text-center" >
+                  <i class="ti-unlock"></i>
+                </div>
+                Habilitar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
