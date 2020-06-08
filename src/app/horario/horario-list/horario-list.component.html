@@ -1,0 +1,52 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Horario</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Horarios</h2>
+  </div>
+  <div class="content">
+    <form #f="ngForm">
+
+      <div class="form-group">
+        <label for="hora_inicio">filtro:</label>
+        <input [(ngModel)]="filter.hora_inicio" id="hora_inicio" name="hora_inicio" class="form-control">
+      </div>
+
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Buscar</button>
+      <a [routerLink]="['../horarios', 'new' ]" class="btn btn-default">Nuevo</a>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="horarioList.length > 0">
+  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive">
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr>
+          <th class="border-top-0" scope="col">Id</th>
+          <th class="border-top-0" scope="col">Hora Inicio</th>
+          <th class="border-top-0" scope="col">Hora Fin</th>
+          <th class="border-top-0" scope="col">Dia</th>
+          <th class="border-top-0" scope="col">Estado</th>
+          <th class="border-top-0" scope="col" style="width:120px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of horarioList" [class.active]="item === selectedHorario">
+
+          <td>{{item.id_horario}}</td>
+          <td>{{item.hora_inicio}}</td>
+          <td>{{item.hora_fin}}</td>
+          <td>{{item.dia}}</td>
+          <td>{{item.activo_horario=='a'?'Activo':'Inactivo'}}</td>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../horarios', item.id_horario ]" class="btn btn-secondary">Editar</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger" [disabled]="item.activo_horario=='n'">Inhabilitar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
