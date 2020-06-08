@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "^10.0.0-rc.2",
     "@angular/router": "^10.0.0-rc.2",
     "core-js": "^3.4.2",
-    "igniteui-angular": "^7.2.9",
+    "igniteui-angular": "^9.1.1",
     "moment": "^2.26.0",
     "ngx-color-picker": "^9.1.0",
     "rxjs": "^6.5.3",
