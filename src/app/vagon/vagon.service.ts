@@ -23,8 +23,8 @@ export class VagonService {
   load(filter: VagonFilter): void {
     this.find(filter).subscribe(result => {
         this.vagonList = result;
-        if(filter.id_plataforma){
-          this.vagonList = this.vagonList.filter( te => te.id_plataforma+''==filter.id_plataforma);
+        if(filter.id_search){
+          this.vagonList = this.vagonList.filter( te => te.id_plataforma+''==filter.id_search || te.id_troncal_estacion+''==filter.id_search);
         }
       },
       err => {
@@ -35,7 +35,7 @@ export class VagonService {
 
   find(filter: VagonFilter): Observable<Vagon[]> {
     const params = {
-      'id_plataforma': filter.id_plataforma,
+      'id_search': filter.id_search,
     };
 
     return this.http.get<Vagon[]>(this.api, {params, headers});
