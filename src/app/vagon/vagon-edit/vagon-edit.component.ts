@@ -85,6 +85,7 @@ export class VagonEditComponent implements OnInit {
     if (this.selectedPlataforma) {
       this.vagon.id_plataforma = this.selectedPlataforma.id_plataforma;
     }
+    
     this.vagonService.save(this.vagon).subscribe(
       vagon => {
         this.vagon = vagon;
@@ -94,9 +95,9 @@ export class VagonEditComponent implements OnInit {
         }, 1000);
       },
       error => {
-        console.log(JSON.stringify(error));
+        
         if (error.error.errors) {
-          this.feedback = {type: 'danger', message: error.error.errors};
+          this.feedback = {type: 'danger', message: JSON.stringify(error.error.errors)};
         } else {
           this.feedback = {type: 'danger', message: 'Error al guardar'};
         }

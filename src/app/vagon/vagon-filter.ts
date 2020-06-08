@@ -1,3 +1,3 @@
 export class VagonFilter {
-    id_plataforma = '';
+    id_search = '';
 }
