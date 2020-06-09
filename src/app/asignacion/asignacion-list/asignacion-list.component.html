@@ -1,0 +1,56 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Asignaciones</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Asignaciones</h2>
+  </div>
+  <div class="content">
+    <form #f="ngForm">
+
+      <div class="form-group">
+        <label for="id_bus">Busqueda :</label>
+        <input [(ngModel)]="filter.id_search" id="id_bus" name="id_bus" class="form-control">
+      </div>
+
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Buscar</button>
+      <a [routerLink]="['../asignacions', 'new' ]" class="btn btn-default">Nuevo</a>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="asignacionList.length > 0">
+  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive">
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr>
+          <th class="border-top-0" scope="col">Id</th>
+          <th class="border-top-0" scope="col">Bus</th>
+          <th class="border-top-0" scope="col">Ruta</th>
+          <th class="border-top-0" scope="col">Horario</th>
+          <th class="border-top-0" scope="col">Fecha inicio</th>
+          <th class="border-top-0" scope="col">Fecha fin</th>
+          <th class="border-top-0" scope="col">Estado</th>
+          <th class="border-top-0" scope="col" style="width:120px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of asignacionList" [class.active]="item === selectedAsignacion">
+
+          <td>{{item.id_asignacion_ruta}}</td>
+          <td>{{item.id_bus}}</td>
+          <td>{{item.id_ruta}}</td>
+          <td>{{item.id_horario}}</td>
+          <td>{{item.fecha_inicio_operacion.substring(0,10)}}</td>
+          <td>{{item.fecha_fin_operacion?item.fecha_fin_operacion.substring(0,10):''}}</td>
+          <td>{{item.activo_asignacion=='a'?'Activo':'Inactivo'}}</td>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../asignacions', item.id_asignacion_ruta ]" class="btn btn-secondary">Editar</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger" [disabled]="item.activo_asignacion=='n'">Inhabilitar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
