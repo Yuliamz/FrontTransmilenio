@@ -8,13 +8,6 @@
   </div>
   <div class="content">
     <form #f="ngForm">
-
-      <div class="form-group">
-        <label for="hora_inicio">filtro:</label>
-        <input [(ngModel)]="filter.hora_inicio" id="hora_inicio" name="hora_inicio" class="form-control">
-      </div>
-
-      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Buscar</button>
       <a [routerLink]="['../horarios', 'new' ]" class="btn btn-default">Nuevo</a>
     </form>
   </div>
@@ -28,7 +21,7 @@
           <th class="border-top-0" scope="col">Id</th>
           <th class="border-top-0" scope="col">Hora Inicio</th>
           <th class="border-top-0" scope="col">Hora Fin</th>
-          <th class="border-top-0" scope="col">Dia</th>
+          <th class="border-top-0" scope="col">Día</th>
           <th class="border-top-0" scope="col">Estado</th>
           <th class="border-top-0" scope="col" style="width:120px">Acciones</th>
         </tr>
@@ -37,8 +30,8 @@
         <tr *ngFor="let item of horarioList" [class.active]="item === selectedHorario">
 
           <td>{{item.id_horario}}</td>
-          <td>{{item.hora_inicio}}</td>
-          <td>{{item.hora_fin}}</td>
+          <td>{{item.horario_inicio.substring(11)}}</td>
+          <td>{{item.horario_fin.substring(11)}}</td>
           <td>{{item.dia}}</td>
           <td>{{item.activo_horario=='a'?'Activo':'Inactivo'}}</td>
           <td style="white-space: nowrap">

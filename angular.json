@@ -25,6 +25,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/igniteui-angular/styles/igniteui-angular.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -127,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "demo"
+  "defaultProject": "demo",
+  "cli": {
+    "analytics": "95c3f2ac-6e5d-49c1-a9f7-4bb585a1990c"
+  }
 }

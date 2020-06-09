@@ -1,3 +1,4 @@
+import {Moment} from 'moment';
 
 export class Horario {
   id_horario: number;
@@ -5,4 +6,7 @@ export class Horario {
   hora_fin: Date;
   dia: string;
   activo_horario: string;
+  horario_inicio: string;
+  horario_fin: string;
+
 }

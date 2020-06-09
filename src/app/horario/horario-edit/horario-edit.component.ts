@@ -18,13 +18,13 @@ export class HorarioEditComponent implements OnInit {
   horario: Horario;
   feedback: any = {};
   estados: any[] = [{id: 'a', nombre: 'Activo'}, {id: 'n', nombre: 'Inactivo'}];
-  dias: any[] = [{id: 'Monday', nombre: 'Lunes'},
-    {id: 'Tuesday', nombre: 'Martes'},
-    {id: 'Wednesday', nombre: 'Miercoles'},
-    {id: 'Thursday', nombre: 'Jueves'},
-    {id: 'Friday', nombre: 'Viernes'},
-    {id: 'Saturday', nombre: 'Sábado'},
-    {id: 'Sunday', nombre: 'Domingo'}
+  dias: any[] = [{id: 'Lunes', nombre: 'Lunes'},
+    {id: 'Martes', nombre: 'Martes'},
+    {id: 'Miércoles', nombre: 'Miércoles'},
+    {id: 'Jueves', nombre: 'Jueves'},
+    {id: 'Viernes', nombre: 'Viernes'},
+    {id: 'Sábado', nombre: 'Sábado'},
+    {id: 'Domingo', nombre: 'Domingo'}
     ];
   constructor(
     private route: ActivatedRoute,
@@ -47,7 +47,9 @@ export class HorarioEditComponent implements OnInit {
           this.horario = horario;
           if (this.horario.activo_horario === undefined) {
             this.horario.activo_horario = 'a';
-            this.horario.dia = '#000000';
+          } else {
+            this.horario.hora_inicio = moment(this.horario.horario_inicio, 'YYYY-MM-DD HH:mm:ss').toDate();
+            this.horario.hora_fin = moment(this.horario.horario_fin, 'YYYY-MM-DD HH:mm:ss').toDate();
           }
           this.feedback = {};
         },

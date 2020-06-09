@@ -3,13 +3,13 @@ import { HorarioFilter } from './horario-filter';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
+import * as moment from 'moment';
 const headers = new HttpHeaders().set('Accept', 'application/json');
 @Injectable()
 export class HorarioService {
 
   horarioList: Horario[] = [];
-  api = 'http://localhost:8000/api/trunk';
+  api = 'http://localhost:8000/api/schedule';
 
   constructor(private http: HttpClient) {
   }
@@ -40,13 +40,16 @@ export class HorarioService {
 
   cargar(): Observable<Horario[]> {
     return this.http.get<Horario[]>(this.api, {
-      headers: {'Accept':'application/json','active':'a'}
+      headers: {'Accept': 'application/json', 'active': 'a'}
    });
   }
 
   save(entity: Horario): Observable<Horario> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
+    entity.horario_inicio = moment(entity.hora_inicio).format('YYYY-MM-DD HH:mm:ss');
+    entity.horario_fin = moment(entity.hora_fin).format('YYYY-MM-DD HH:mm:ss');
+    console.log(entity);
     if (entity.id_horario) {
       url = this.api + '/' + entity.id_horario;
       // params = new HttpParams().set('ID', entity.id_horario.toString());
@@ -58,7 +61,7 @@ export class HorarioService {
   }
 
   delete(entity: Horario): Observable<Horario> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
     if (entity.id_horario) {
       url = this.api + '/' + entity.id_horario;

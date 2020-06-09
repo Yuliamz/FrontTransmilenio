@@ -34,9 +34,9 @@ export class HorarioListComponent implements OnInit {
   }
 
   delete(horario: Horario): void {
-    if (confirm('Está seguro de inhabilitar la Horario ' + horario.hora_fin)) {
+    if (confirm('Está seguro de inhabilitar el Horario ' + horario.id_horario)) {
       this.horarioService.delete(horario).subscribe(() => {
-          this.feedback = {type: 'success', message: 'La horario ha sido deshabilitada'};
+          this.feedback = {type: 'success', message: 'El horario ha sido deshabilitada'};
           setTimeout(() => {
             this.search();
           }, 1000);

@@ -8,6 +8,7 @@ import { HorarioService } from './horario.service';
 import { HORARIO_ROUTES } from './horario.routes';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { IgxTimePickerModule } from 'igniteui-angular';
+import * as moment from 'moment';
 
 @NgModule({
   imports: [
