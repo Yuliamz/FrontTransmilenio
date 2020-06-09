@@ -3,13 +3,14 @@ import { TipoFilter } from './tipo-filter';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {Portal} from '../portal/portal';
 
 const headers = new HttpHeaders().set('Accept', 'application/json');
 @Injectable()
 export class TipoService {
 
   tipoList: Tipo[] = [];
-  api = 'http://localhost:8000/api/busType';
+  api = 'http://localhost:8000/api/bustype';
 
   constructor(private http: HttpClient) {
   }
@@ -30,6 +31,12 @@ export class TipoService {
     );
   }
 
+  cargar(): Observable<Tipo[]> {
+    return this.http.get<Tipo[]>(this.api, {
+      headers: {'Accept': 'application/json', 'active': 'a'}
+    });
+  }
+
   find(filter: TipoFilter): Observable<Tipo[]> {
     const params = {
       'nombre_tipo': filter.nombre_tipo,
@@ -39,7 +46,7 @@ export class TipoService {
   }
 
   save(entity: Tipo): Observable<Tipo> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
     if (entity.id_tipo_bus) {
       url = this.api + '/' + entity.id_tipo_bus;
@@ -52,7 +59,7 @@ export class TipoService {
   }
 
   delete(entity: Tipo): Observable<Tipo> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
     if (entity.id_tipo_bus) {
       url = this.api + '/' + entity.id_tipo_bus;

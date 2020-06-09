@@ -21,6 +21,7 @@ import { VagonModule } from './vagon/vagon.module';
 import { RutaModule } from './ruta/ruta.module';
 import { ParadaModule } from './parada/parada.module';
 import { HorarioModule } from './horario/horario.module';
+import { BusModule } from './bus/bus.module';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { HorarioModule } from './horario/horario.module';
     ParadaModule,
     PortalModule,
     HorarioModule,
+    BusModule,
   ],
   declarations: [
     AppComponent,

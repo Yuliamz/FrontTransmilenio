@@ -1,0 +1,50 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Bus</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Bus</h2>
+  </div>
+  <div class="content">
+    <form #f="ngForm">
+
+      <div class="form-group">
+        <label for="id_tipo">Tipo:</label>
+        <input [(ngModel)]="filter.id_tipo" id="id_tipo" name="id_tipo" class="form-control">
+      </div>
+
+      <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Buscar</button>
+      <a [routerLink]="['../buss', 'new' ]" class="btn btn-default">Nuevo</a>
+    </form>
+  </div>
+</div>
+<div class="card" *ngIf="busList.length > 0">
+  <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+  <div class="table-responsive">
+    <table class="table table-centered table-hover mb-0" id="datatable">
+      <thead>
+        <tr>
+          <th class="border-top-0" scope="col">Id</th>
+          <th class="border-top-0" scope="col">Tipo</th>
+          <th class="border-top-0" scope="col">Placa</th>
+          <th class="border-top-0" scope="col">Estado</th>
+          <th class="border-top-0" scope="col" style="width:120px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of busList" [class.active]="item === selectedBus">
+
+          <td>{{item.id_bus}}</td>
+          <td>{{item.id_tipo_bus}}</td>
+          <td>{{item.placabus}}</td>
+          <td>{{item.activo_bus=='a'?'Activo':'Inactivo'}}</td>
+          <td style="white-space: nowrap">
+            <a [routerLink]="['../buss', item.id_bus ]" class="btn btn-secondary">Editar</a>&nbsp;
+            <button (click)="delete(item)" class="btn btn-danger" [disabled]="item.activo_bus=='n'">Inhabilitar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

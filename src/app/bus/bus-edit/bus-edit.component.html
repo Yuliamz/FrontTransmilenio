@@ -1,0 +1,45 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Bus</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Detalles del Bus</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="bus" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Id</label>
+        {{bus.id_bus || 'n/a'}}
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_bus">Tipo</label>
+        <select name="tipo_bus" id="tipo_bus" [(ngModel)]="selectedTipo" class="form-control">
+          <option
+          [ngValue]="item"
+          *ngFor="let item of tipos">
+          {{item.nombre_tipo}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="placabus">Placa</label>
+        <input placeholder="Placa del bus" [(ngModel)]="bus.placabus" id="placabus" name="placabus" class="form-control" type="text">
+      </div>
+
+      <div class="form-group">
+        <label for="activo_bus">Estado</label>
+        <select name="activo_bus" id="activo_bus" [(ngModel)]="bus.activo_bus" class="form-control">
+          <option [ngValue]="item.id" *ngFor="let item of estados">{{item.nombre}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>
