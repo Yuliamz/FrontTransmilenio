@@ -77,12 +77,16 @@ export class BusEditComponent implements OnInit {
           this.router.navigate(['/buss']);
         }, 1000);
       },
-      error => {
-        if (error.error.errors) {
-          this.feedback = {type: 'danger', message: error.error.errors};
-        } else {
-          this.feedback = {type: 'danger', message: 'Error al guardar'};
+      err => {
+        let message = '';
+        if(typeof err.error.errors === 'string')
+          message = err.error.errors;
+        else{
+          for(let error in err.error.errors)
+            message +=  err.error.errors[error]+',';
+          message = message.substring(0, message.length-1);
         }
+        this.feedback = {type: 'warning', message};
       }
     );
   }
