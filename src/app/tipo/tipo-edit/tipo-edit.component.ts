@@ -57,7 +57,15 @@ export class TipoEditComponent implements OnInit {
         }, 1000);
       },
       err => {
-        this.feedback = {type: 'warning', message: 'Error al guardar'};
+        let message = '';
+        if(typeof err.error.errors === 'string')
+          message = err.error.errors;
+        else{
+          for(let error in err.error.errors)
+            message +=  err.error.errors[error]+',';
+          message = message.substring(0, message.length-1);
+        }
+        this.feedback = {type: 'warning', message};
       }
     );
   }
