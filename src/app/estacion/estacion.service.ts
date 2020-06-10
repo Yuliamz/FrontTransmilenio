@@ -25,6 +25,9 @@ export class EstacionService {
   load(filter: EstacionFilter): void {
     this.find(filter).subscribe(result => {
         this.estacionList = result;
+        if(filter.nombre_estacion){
+          this.estacionList = this.estacionList.filter( te => te.nombre_estacion + '' == filter.nombre_estacion);
+        }
       },
       err => {
         console.error('error loading', err);

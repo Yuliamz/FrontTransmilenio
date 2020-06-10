@@ -24,6 +24,9 @@ export class TipoService {
   load(filter: TipoFilter): void {
     this.find(filter).subscribe(result => {
         this.tipoList = result;
+        if(filter.nombre_tipo){
+          this.tipoList = this.tipoList.filter( te => te.nombre_tipo + '' == filter.nombre_tipo);
+        }
       },
       err => {
         console.error('error loading', err);

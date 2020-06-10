@@ -23,6 +23,9 @@ export class TroncalService {
   load(filter: TroncalFilter): void {
     this.find(filter).subscribe(result => {
         this.troncalList = result;
+        if(filter.nombre_troncal){
+          this.troncalList = this.troncalList.filter( te => te.nombre_troncal + '' == filter.nombre_troncal);
+        }
       },
       err => {
         console.error('error loading', err);

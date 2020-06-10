@@ -25,6 +25,9 @@ export class RutaService {
   load(filter: RutaFilter): void {
     this.find(filter).subscribe(result => {
         this.rutaList = result;
+        if(filter.codigo_ruta){
+          this.rutaList = this.rutaList.filter( te => te.codigo_ruta + '' == filter.codigo_ruta);
+        }
       },
       err => {
         console.error('error loading', err);
