@@ -1,3 +1,3 @@
 export class TroncalEstacionFilter {
-    id_troncal = '';
+    id_search = '';
 }

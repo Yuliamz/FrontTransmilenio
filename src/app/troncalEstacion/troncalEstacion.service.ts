@@ -23,8 +23,8 @@ export class TroncalEstacionService {
   load(filter: TroncalEstacionFilter): void {
     this.find(filter).subscribe(result => {
         this.troncalEstacionList = result;
-        if(filter.id_troncal){
-          this.troncalEstacionList = this.troncalEstacionList.filter( te => te.id_troncal+''==filter.id_troncal);
+        if(filter.id_search){
+          this.troncalEstacionList = this.troncalEstacionList.filter( te => te.id_troncal + '' == filter.id_search || te.id_estacion + '' == filter.id_search);
         }
       },
       err => {
@@ -35,7 +35,7 @@ export class TroncalEstacionService {
 
   find(filter: TroncalEstacionFilter): Observable<TroncalEstacion[]> {
     const params = {
-      'id_troncal': filter.id_troncal,
+      'id_search': filter.id_search,
     };
 
     return this.http.get<TroncalEstacion[]>(this.api, {params, headers});

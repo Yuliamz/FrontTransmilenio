@@ -10,8 +10,8 @@
     <form #f="ngForm">
 
       <div class="form-group">
-        <label for="id_troncal">Nombre:</label>
-        <input [(ngModel)]="filter.id_troncal" id="id_troncal" name="id_troncal" class="form-control">
+        <label for="id_troncal">Busqueda por troncal o estacion</label>
+        <input [(ngModel)]="filter.id_search" id="id_troncal" name="id_troncal" class="form-control">
       </div>
 
       <button (click)="search()" [disabled]="!f?.valid" class="btn btn-primary">Buscar</button>
