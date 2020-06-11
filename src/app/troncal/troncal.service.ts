@@ -23,7 +23,7 @@ export class TroncalService {
   load(filter: TroncalFilter): void {
     this.find(filter).subscribe(result => {
         this.troncalList = result;
-        if(filter.nombre_troncal){
+        if (filter.nombre_troncal) {
           this.troncalList = this.troncalList.filter( te => te.nombre_troncal + '' == filter.nombre_troncal);
         }
       },
@@ -43,12 +43,12 @@ export class TroncalService {
 
   cargar(): Observable<Troncal[]> {
     return this.http.get<Troncal[]>(this.api, {
-      headers: {'Accept':'application/json','active':'a'}
+      headers: {'Accept': 'application/json', 'active': 'a'}
    });
   }
 
   save(entity: Troncal): Observable<Troncal> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
     if (entity.id_troncal) {
       url = this.api + '/' + entity.id_troncal;
@@ -61,7 +61,7 @@ export class TroncalService {
   }
 
   delete(entity: Troncal): Observable<Troncal> {
-    let params = new HttpParams();
+    const params = new HttpParams();
     let url = '';
     if (entity.id_troncal) {
       url = this.api + '/' + entity.id_troncal;

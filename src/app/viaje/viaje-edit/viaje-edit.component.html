@@ -1,0 +1,45 @@
+<ol class="breadcrumb float-right">
+  <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
+  <li class="breadcrumb-item active">Viaje</li>
+</ol>
+<div class="card">
+  <div class="header">
+    <h2 class="title">Detalles del Viaje</h2>
+  </div>
+  <div class="content">
+    <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+    <form *ngIf="viaje" #editForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label>Id</label>
+        {{viaje.id_viaje || 'n/a'}}
+      </div>
+
+      <div class="form-group">
+        <label for="asignacion_viaje">Asignacion</label>
+        <select name="asignacion_viaje" id="asignacion_viaje" [(ngModel)]="selectedAsignacion" class="form-control">
+          <option
+          [ngValue]="item"
+          *ngFor="let item of asignaciones">
+          {{item.id_asignacion_ruta}}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2" for="fecha_inicio_viaje">Fecha inicio</label>
+        <igx-date-picker class="col-md-5" id="fecha_inicio_viaje" name="fecha_inicio_viaje" locale="es-CO" [(ngModel)]="viaje.fecha_inicio"></igx-date-picker>
+        <igx-time-picker class="col-md-5" id="hora_inicio" name="hora_inicio" [(ngModel)]="viaje.fecha_inicio" [disabled]="!viaje.fecha_inicio"></igx-time-picker>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2" for="fecha_fin_viaje">Fecha fin</label>
+        <igx-date-picker class="col-md-5" id="fecha_fin_viaje" name="fecha_fin_viaje" locale="es-CO" [(ngModel)]="viaje.fecha_fin"></igx-date-picker>
+        <igx-time-picker class="col-md-5" id="hora_fin" name="hora_fin" [(ngModel)]="viaje.fecha_fin" [disabled]="!viaje.fecha_fin"></igx-time-picker>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!editForm.form.valid">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>

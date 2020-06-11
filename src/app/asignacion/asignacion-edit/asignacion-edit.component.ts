@@ -24,7 +24,7 @@ export class AsignacionEditComponent implements OnInit {
   estados: any[] = [{id: 'a', nombre: 'Activo'}, {id: 'n', nombre: 'Inactivo'}];
   buses: Bus[];
   rutaes: Ruta[];
-  horarios: Horario[]
+  horarios: Horario[];
   selectedBus: Bus;
   selectedRuta: Ruta;
   selectedHorario: Horario;
@@ -115,12 +115,13 @@ export class AsignacionEditComponent implements OnInit {
       },
       err => {
         let message = '';
-        if(typeof err.error.errors === 'string')
+        if (typeof err.error.errors === 'string') {
           message = err.error.errors;
-        else{
-          for(let error in err.error.errors)
-            message +=  err.error.errors[error]+',';
-          message = message.substring(0, message.length-1);
+        } else {
+          for (const error in err.error.errors) {
+            message +=  err.error.errors[error] + ',';
+          }
+          message = message.substring(0, message.length - 1);
         }
         this.feedback = {type: 'warning', message};
       }

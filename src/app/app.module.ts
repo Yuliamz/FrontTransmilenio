@@ -23,6 +23,7 @@ import { ParadaModule } from './parada/parada.module';
 import { HorarioModule } from './horario/horario.module';
 import { BusModule } from './bus/bus.module';
 import { AsignacionModule } from './asignacion/asignacion.module';
+import {ViajeModule} from './viaje/viaje.module';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { AsignacionModule } from './asignacion/asignacion.module';
     HorarioModule,
     BusModule,
     AsignacionModule,
+    ViajeModule,
   ],
   declarations: [
     AppComponent,
