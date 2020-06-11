@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AsignacionFilter } from '../asignacion-filter';
 import { AsignacionService } from '../asignacion.service';
 import { Asignacion } from '../asignacion';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-asignacion',
   templateUrl: 'Asignacion-list.component.html'
@@ -30,6 +30,10 @@ export class AsignacionListComponent implements OnInit {
 
   select(selected: Asignacion): void {
     this.selectedAsignacion = selected;
+  }
+
+  descargar() {
+    saveAs('http://localhost:8000/api/download/TimeRouteAssignment', 'Asignaciones.json');
   }
 
   delete(asignacion: Asignacion): void {
