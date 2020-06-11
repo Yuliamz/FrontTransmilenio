@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BusFilter } from '../bus-filter';
 import { BusService } from '../bus.service';
 import { Bus } from '../bus';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-bus',
   templateUrl: 'Bus-list.component.html'
@@ -30,6 +30,10 @@ export class BusListComponent implements OnInit {
 
   select(selected: Bus): void {
     this.selectedBus = selected;
+  }
+
+  descargar() {
+    saveAs('http://localhost:8000/api/download/bus', 'buses.json');
   }
 
   delete(bus: Bus): void {
