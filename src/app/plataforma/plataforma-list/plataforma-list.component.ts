@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlataformaFilter } from '../plataforma-filter';
 import { PlataformaService } from '../plataforma.service';
 import { Plataforma } from '../plataforma';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-plataforma',
@@ -31,7 +32,9 @@ export class PlataformaListComponent implements OnInit {
   select(selected: Plataforma): void {
     this.selectedPlataforma = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Platform', 'Plataformas.json');
+  }
   delete(plataforma: Plataforma): void {
     if (confirm('Está seguro de inhabilitar la Plataforma número ' + plataforma.numero_plataforma)) {
       this.plataformaService.delete(plataforma).subscribe(() => {

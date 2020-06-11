@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PortalFilter } from '../portal-filter';
 import { PortalService } from '../portal.service';
 import { Portal } from '../portal';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-portal',
@@ -31,7 +32,9 @@ export class PortalListComponent implements OnInit {
   select(selected: Portal): void {
     this.selectedPortal = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Portal', 'Portales.json');
+  }
   delete(portal: Portal): void {
     if (confirm('Está seguro de inhabilitar el Portal ' + portal.id_portal+' - '+portal.nombre_portal)) {
       this.portalService.delete(portal).subscribe(() => {

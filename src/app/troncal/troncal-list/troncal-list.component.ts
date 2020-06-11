@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TroncalFilter } from '../troncal-filter';
 import { TroncalService } from '../troncal.service';
 import { Troncal } from '../troncal';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-troncal',
@@ -31,7 +32,9 @@ export class TroncalListComponent implements OnInit {
   select(selected: Troncal): void {
     this.selectedTroncal = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Trunk', 'Troncales.json');
+  }
   delete(troncal: Troncal): void {
     if (confirm('Está seguro de inhabilitar la Troncal ' + troncal.letra_troncal)) {
       this.troncalService.delete(troncal).subscribe(() => {

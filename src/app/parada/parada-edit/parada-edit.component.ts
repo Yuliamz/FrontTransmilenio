@@ -11,6 +11,7 @@ import {RutaService} from '../../ruta/ruta.service';
 import {Vagon} from '../../vagon/vagon';
 import {VagonService} from '../../vagon/vagon.service';
 import {VagonDTO} from '../vagonDTO';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-parada-edit',
@@ -85,7 +86,9 @@ export class ParadaEditComponent implements OnInit {
         this.feedback = {type: 'danger', message: 'No existen Vagones'};
       });
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/stop', 'Paradas.json');
+  }
   save() {
     if (!this.parada.id_ruta) {
       console.log('No tiene id_ruta por lo tanto va a guardar');

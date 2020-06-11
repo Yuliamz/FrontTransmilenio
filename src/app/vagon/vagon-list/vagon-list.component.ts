@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VagonFilter } from '../vagon-filter';
 import { VagonService } from '../vagon.service';
 import { Vagon } from '../vagon';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-vagon',
@@ -31,7 +32,9 @@ export class VagonListComponent implements OnInit {
   select(selected: Vagon): void {
     this.selectedVagon = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Wagon', 'Vagones.json');
+  }
   delete(vagon: Vagon): void {
     if (confirm('Está seguro de inhabilitar el Vagon ' + vagon.numero_vagon)) {
       this.vagonService.delete(vagon).subscribe(() => {

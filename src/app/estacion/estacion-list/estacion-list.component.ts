@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EstacionFilter } from '../estacion-filter';
 import { EstacionService } from '../estacion.service';
 import { Estacion } from '../estacion';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-estacion',
@@ -30,6 +31,9 @@ export class EstacionListComponent implements OnInit {
 
   select(selected: Estacion): void {
     this.selectedEstacion = selected;
+  }
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Station', 'Estaciones.json');
   }
 
   delete(estacion: Estacion): void {

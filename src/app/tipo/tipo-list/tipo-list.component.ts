@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TipoFilter } from '../tipo-filter';
 import { TipoService } from '../tipo.service';
 import { Tipo } from '../tipo';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-tipo',
@@ -31,7 +32,9 @@ export class TipoListComponent implements OnInit {
   select(selected: Tipo): void {
     this.selectedTipo = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/BusType', 'TiposBuses.json');
+  }
   delete(tipo: Tipo): void {
     if (confirm('Está seguro de inhabilitar el Tipo de bus ' + tipo.id_tipo_bus)) {
       this.tipoService.delete(tipo).subscribe(() => {

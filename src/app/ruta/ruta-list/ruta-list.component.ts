@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RutaFilter } from '../ruta-filter';
 import { RutaService } from '../ruta.service';
 import { Ruta } from '../ruta';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-ruta',
@@ -31,7 +32,9 @@ export class RutaListComponent implements OnInit {
   select(selected: Ruta): void {
     this.selectedRuta = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Route', 'Rutas.json');
+  }
   delete(ruta: Ruta): void {
     if (confirm('Está seguro de inhabilitar la Ruta ' + ruta.codigo_ruta)) {
       this.rutaService.delete(ruta).subscribe(() => {

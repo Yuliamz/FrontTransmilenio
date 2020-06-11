@@ -3,6 +3,7 @@ import { HorarioFilter } from '../horario-filter';
 import { HorarioService } from '../horario.service';
 import { Horario } from '../horario';
 import * as moment from 'moment';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-horario',
@@ -32,7 +33,9 @@ export class HorarioListComponent implements OnInit {
   select(selected: Horario): void {
     this.selectedHorario = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Schedule', 'Horarios.json');
+  }
   delete(horario: Horario): void {
     if (confirm('Está seguro de inhabilitar el Horario ' + horario.id_horario)) {
       this.horarioService.delete(horario).subscribe(() => {

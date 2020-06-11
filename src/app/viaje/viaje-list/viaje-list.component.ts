@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViajeFilter } from '../viaje-filter';
 import { ViajeService } from '../viaje.service';
 import { Viaje } from '../viaje';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-viaje',
@@ -31,7 +32,9 @@ export class ViajeListComponent implements OnInit {
   select(selected: Viaje): void {
     this.selectedViaje = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/Travel', 'Viajes.json');
+  }
   delete(viaje: Viaje): void {
     if (confirm('Está seguro de inhabilitar el Viaje ' + viaje.id_viaje)) {
       this.viajeService.delete(viaje).subscribe(() => {

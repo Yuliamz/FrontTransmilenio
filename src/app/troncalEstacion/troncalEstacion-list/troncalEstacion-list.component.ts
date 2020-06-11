@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TroncalEstacionFilter } from '../troncalEstacion-filter';
 import { TroncalEstacionService } from '../troncalEstacion.service';
 import { TroncalEstacion } from '../troncalEstacion';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-troncalEstacion',
@@ -31,7 +32,9 @@ export class TroncalEstacionListComponent implements OnInit {
   select(selected: TroncalEstacion): void {
     this.selectedTroncalEstacion = selected;
   }
-
+  descargar() {
+    saveAs('http://localhost:8000/api/download/TrunkStation', 'TroncalEstaciones.json');
+  }
   delete(troncalEstacion: TroncalEstacion): void {
     if (confirm('Está seguro de inhabilitar la TroncalEstacion ' + troncalEstacion.id_troncal_estacion)) {
       this.troncalEstacionService.delete(troncalEstacion).subscribe(() => {
