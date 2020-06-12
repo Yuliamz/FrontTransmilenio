@@ -24,6 +24,7 @@ import { HorarioModule } from './horario/horario.module';
 import { BusModule } from './bus/bus.module';
 import { AsignacionModule } from './asignacion/asignacion.module';
 import {ViajeModule} from './viaje/viaje.module';
+import { RandomModule } from './random/random.module';
 
 @NgModule({
   imports: [
@@ -46,11 +47,12 @@ import {ViajeModule} from './viaje/viaje.module';
     BusModule,
     AsignacionModule,
     ViajeModule,
+    RandomModule
   ],
   declarations: [
     AppComponent,
     SidebarComponent,
-    HomeComponent,
+    HomeComponent
   ],
   exports: [ColorPickerModule],
   providers: [],
