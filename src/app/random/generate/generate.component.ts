@@ -91,13 +91,23 @@ export class GenerateComponent {
       }
       this.service.send(this.model, this.optionRandom.action, this.file).subscribe(
           answer => {
-            let message = '<p>Errores</p><ol>';
-            for(let error in answer.errors)
-              message +=  '<li>'+answer.errors[error]+'</li>';
-            message = message.substring(0, message.length-1);
-            message += '</ol>';
-            this.feedback = {type: answer.errors ? 'warning': 'success', message: answer.message+message};
-          },
+            let list_err: string;
+            if(answer.errors.length || Object.keys(answer.errors).length){
+                list_err = '<p>Errores</p><ol>';
+                for(let error in answer.errors)
+                {
+                    try {
+                        let sub_errors = JSON.parse(answer.errors[error]);
+                        for(let sub_err in sub_errors)
+                            list_err +=  '<li>'+sub_errors[sub_err]+'</li>';
+                    } catch(e) {
+                        list_err +=  '<li>'+answer.errors[error]+'</li>';
+                    }                        
+                }
+                list_err += '</ol>';
+            }
+            this.feedback = {type: list_err ? 'warning': 'success', message: list_err ? answer.message + list_err: answer.message };
+        },
           err => {
             let message = '';
             if(typeof err.error.errors === 'string')
@@ -120,13 +130,23 @@ export class GenerateComponent {
       } else
         this.service.action(this.model, this.optionRandom.action, this.amount).subscribe(
             answer => {
-              let message = '<p>Errores</p><ol>';
-              for(let error in answer.errors)
-                message +=  '<li>'+answer.errors[error]+'</li>';
-              message = message.substring(0, message.length-1);
-              message += '</ol>';
-              this.feedback = {type: answer.errors ? 'warning': 'success', message: answer.message+message};
-            },
+              let list_err: string;
+            if(answer.errors.length || Object.keys(answer.errors).length){
+                list_err = '<p>Errores</p><ol>';
+                for(let error in answer.errors)
+                {
+                    try {
+                        let sub_errors = JSON.parse(answer.errors[error]);
+                        for(let sub_err in sub_errors)
+                            list_err +=  '<li>'+sub_errors[sub_err]+'</li>';
+                    } catch(e) {
+                        list_err +=  '<li>'+answer.errors[error]+'</li>';
+                    }                        
+                }
+                list_err += '</ol>';
+            }
+            this.feedback = {type: list_err ? 'warning': 'success', message: list_err ? answer.message + list_err: answer.message };
+        },
             err => {
               let message = '';
               if(typeof err.error.errors === 'string')
