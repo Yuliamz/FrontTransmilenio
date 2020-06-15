@@ -21,7 +21,7 @@
           <option
           [ngValue]="item"
           *ngFor="let item of asignaciones">
-          {{item.id_asignacion_ruta}}
+          {{"Ruta: "+ item.routes.codigo_ruta+" - Bus: "+item.buses.placabus+" - horario: "+item.schedules.horario_inicio.substring(11)+" - "+item.schedules.horario_fin.substring(11)}}
         </option>
         </select>
       </div>

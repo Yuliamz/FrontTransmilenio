@@ -63,6 +63,7 @@ export class ViajeEditComponent implements OnInit {
           this.feedback = {type: 'warning', message: 'No existen Asignaciones'};
         } else {
           this.asignaciones = data;
+          console.log(this.asignaciones);
           this.setAsignacion();
         }
       }, error => {

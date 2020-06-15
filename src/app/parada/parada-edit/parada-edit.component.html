@@ -59,7 +59,7 @@
                  [ngStyle]="{'background-color': (item.activo_vagon=='n') ? 'rgb(143, 143, 143)' : 'white'}"
                  cdkDrag>
                  <ng-container *ngIf="item.platform != null">
-                  {{item.pivot.id_vagon}}
+                  {{"Portal: " +item.platform.portal.nombre_portal+ " - Plataforma: "+item.platform.numero_plataforma+" - Vagón: "+item.numero_vagon}}
                  </ng-container>
                 <ng-container *ngIf="item.trunk_station != null">
                   {{"Estación: " +item.trunk_station.station.nombre_estacion+" - Vagón: "+item.numero_vagon}}

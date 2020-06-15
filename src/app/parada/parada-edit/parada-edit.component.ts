@@ -245,6 +245,8 @@ export class ParadaEditComponent implements OnInit {
           vagon.id_troncal_estacion = value[i].id_troncal_estacion;
           vagon.numero_vagon = value[i].numero_vagon;
           vagon.activo_vagon = value[i].pivot.estado_parada;
+          vagon['platform'] = value[i].platform;
+          vagon['trunk_station'] = value[i].trunk_station;
           vagon.draggable = false;
           this.selectedVagones.push(vagon);
 
