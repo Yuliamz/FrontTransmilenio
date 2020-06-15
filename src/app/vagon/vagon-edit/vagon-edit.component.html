@@ -16,12 +16,12 @@
       </div>
 
       <div class="form-group">
-        <label for="plataforma_vagon">Plataforma</label>
+        <label for="plataforma_vagon">Portal y número de plataforma</label>
         <select name="plataforma_vagon" [(ngModel)]="selectedPlataforma" class="form-control">
           <option
           [ngValue]="item"
           *ngFor="let item of plataformaes">
-          {{item.id_portal +' - '+item.numero_plataforma}}
+            {{item.portal.nombre_portal+ - +item.numero_plataforma}}
         </option>
         </select>
       </div>
@@ -29,7 +29,9 @@
       <div class="form-group">
         <label for="troncalEstacion_vagon">Estacion</label>
         <select name="troncalEstacion_vagon" [(ngModel)]="selectedEstacion" class="form-control">
-          <option [ngValue]="item" *ngFor="let item of troncalEstaciones">{{item.id_troncal + '-' + item.id_estacion}}</option>
+          <option [ngValue]="item" *ngFor="let item of troncalEstaciones">
+              {{item.station.nombre_estacion}}
+          </option>
         </select>
       </div>
 

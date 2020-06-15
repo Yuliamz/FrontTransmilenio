@@ -52,9 +52,7 @@ export class ParadaEditComponent implements OnInit {
       )
       .subscribe(parada => {
           this.parada = new Parada();
-          console.log('54: ' ); console.log((this.parada));
           this.parada.id_ruta = Number(this.ruta);
-          console.log('56: ' ); console.log((this.parada));
           this.feedback = {};
         },
         err => {

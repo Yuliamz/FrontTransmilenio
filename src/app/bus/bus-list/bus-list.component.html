@@ -38,7 +38,7 @@
         <tr *ngFor="let item of busList" [class.active]="item === selectedBus">
 
           <td>{{item.id_bus}}</td>
-          <td>{{item.id_tipo_bus}}</td>
+          <td>{{item.bus_type.nombre_tipo}}</td>
           <td>{{item.placabus}}</td>
           <td>{{item.activo_bus=='a'?'Activo':'Inactivo'}}</td>
           <td style="white-space: nowrap">

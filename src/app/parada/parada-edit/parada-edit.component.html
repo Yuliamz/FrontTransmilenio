@@ -24,7 +24,7 @@
 
       <button type="submit" class="btn btn-primary" >Guardar</button>
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
-      <button (click)="descargar()" class="btn btn-primary">Descargar</button>
+      <a href="http://localhost:8000/api/download/stop" class="btn btn-primary">Descargar</a>
 
       <div cdkDropListGroup >
         <div class="example-container">
@@ -35,7 +35,14 @@
             [cdkDropListData]="vagones"
             class="example-list"
             (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of vagones" cdkDrag>{{item.id_vagon}}</div>
+            <div class="example-box" *ngFor="let item of vagones"cdkDrag>
+              <ng-container *ngIf="item.platform != null">
+                {{"Portal: " +item.platform.portal.nombre_portal+ " - Plataforma: "+item.platform.numero_plataforma+" - Vagón: "+item.numero_vagon}}
+               </ng-container>
+              <ng-container *ngIf="item.trunk_station != null">
+                {{"Estación: " +item.trunk_station.station.nombre_estacion+" - Vagón: "+item.numero_vagon}}
+              </ng-container>
+            </div>
           </div>
         </div>
 
@@ -50,10 +57,13 @@
             <div class="example-box"
                  *ngFor="let item of selectedVagones"
                  [ngStyle]="{'background-color': (item.activo_vagon=='n') ? 'rgb(143, 143, 143)' : 'white'}"
-                 cdkDrag
-            >
-              {{item.id_vagon}}
-
+                 cdkDrag>
+                 <ng-container *ngIf="item.platform != null">
+                  {{item.pivot.id_vagon}}
+                 </ng-container>
+                <ng-container *ngIf="item.trunk_station != null">
+                  {{"Estación: " +item.trunk_station.station.nombre_estacion+" - Vagón: "+item.numero_vagon}}
+                </ng-container>
               <button (click)="habilitar(item)" *ngIf="item.activo_vagon=='n'">
                 <div class="icon text-center" >
                   <i class="ti-unlock"></i>

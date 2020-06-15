@@ -37,7 +37,7 @@
         <tr *ngFor="let item of portalList" [class.active]="item === selectedTroncal">
 
           <td>{{item.id_portal}}</td>
-          <td>{{item.id_troncal}}</td>
+          <td>{{item.trunk.nombre_troncal}}</td>
           <td>{{item.nombre_portal}}</td>
           <td>{{item.activo_portal=='a'?'Activo':'Inactivo'}}</td>
           <td style="white-space: nowrap">

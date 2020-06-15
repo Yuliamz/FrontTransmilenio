@@ -37,7 +37,7 @@
         <tr *ngFor="let item of plataformaList" [class.active]="item === selectedPortal">
 
           <td>{{item.id_plataforma}}</td>
-          <td>{{item.id_portal}}</td>
+          <td>{{item.portal.nombre_portal}}</td>
           <td>{{item.numero_plataforma}}</td>
           <td>{{item.activo_plataforma=='a'?'Activo':'Inactivo'}}</td>
           <td style="white-space: nowrap">

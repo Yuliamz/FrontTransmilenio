@@ -27,9 +27,9 @@
       <thead>
         <tr>
           <th class="border-top-0" scope="col">Id</th>
-          <th class="border-top-0" scope="col">Plataforma</th>
+          <th class="border-top-0" scope="col">Portal y número de plataforma</th>
           <th class="border-top-0" scope="col">Estacion</th>
-          <th class="border-top-0" scope="col">Número</th>
+          <th class="border-top-0" scope="col">Número de vagón</th>
           <th class="border-top-0" scope="col">Estado</th>
           <th class="border-top-0" scope="col" style="width:120px">Acciones</th>
         </tr>
@@ -38,8 +38,13 @@
         <tr *ngFor="let item of vagonList" [class.active]="item === selectedPlataforma">
 
           <td>{{item.id_vagon}}</td>
-          <td>{{item.id_plataforma}}</td>
-          <td>{{item.id_troncal_estacion}}</td>
+          <td><ng-container *ngIf="item.platform != null">
+           {{item.platform.portal.nombre_portal+ - +item.platform.numero_plataforma}}
+          </ng-container></td>
+
+          <td><ng-container *ngIf="item.trunk_station != null">
+            {{item.trunk_station.station.nombre_estacion}}
+          </ng-container></td>
           <td>{{item.numero_vagon}}</td>
           <td>{{item.activo_vagon=='a'?'Activo':'Inactivo'}}</td>
           <td style="white-space: nowrap">

@@ -37,7 +37,7 @@
         <tr *ngFor="let item of viajeList" [class.active]="item === selectedViaje">
 
           <td>{{item.id_viaje}}</td>
-          <td>{{item.id_asignacion_ruta}}</td>
+          <td>{{"Ruta: "+ item.asinnations.routes.codigo_ruta+" - Bus: "+item.asinnations.buses.placabus+" - horario: "+item.asinnations.schedules.horario_inicio.substring(11)+" - "+item.asinnations.schedules.horario_fin.substring(11)}}</td>
           <td>{{item.fecha_inicio_viaje}}</td>
           <td>{{item.fecha_fin_viaje}}</td>
           <td style="white-space: nowrap">

@@ -37,8 +37,8 @@
         <tr *ngFor="let item of troncalEstacionList" [class.active]="item === selectedTroncal">
 
           <td>{{item.id_troncal_estacion}}</td>
-          <td>{{item.id_troncal}}</td>
-          <td>{{item.id_estacion}}</td>
+          <td>{{item.trunk.nombre_troncal}}</td>
+          <td>{{item.station.nombre_estacion}}</td>
           <td>{{item.activo_troncal_estacion=='a'?'Activo':'Inactivo'}}</td>
           <td style="white-space: nowrap">
             <a [routerLink]="['../troncalEstacions', item.id_troncal_estacion ]" class="btn btn-secondary">Editar</a>&nbsp;

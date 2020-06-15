@@ -40,9 +40,9 @@
         <tr *ngFor="let item of asignacionList" [class.active]="item === selectedAsignacion">
 
           <td>{{item.id_asignacion_ruta}}</td>
-          <td>{{item.id_bus}}</td>
-          <td>{{item.id_ruta}}</td>
-          <td>{{item.id_horario}}</td>
+          <td>{{item.buses.placabus}}</td>
+          <td>{{item.routes.codigo_ruta}}</td>
+          <td>{{item.schedules.horario_inicio.substring(11)+" - "+item.schedules.horario_fin.substring(11)}}</td>
           <td>{{item.fecha_inicio_operacion.substring(0,10)}}</td>
           <td>{{item.fecha_fin_operacion?item.fecha_fin_operacion.substring(0,10):''}}</td>
           <td>{{item.activo_asignacion=='a'?'Activo':'Inactivo'}}</td>
